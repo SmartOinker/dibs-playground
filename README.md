@@ -51,6 +51,10 @@ your coding agent installed and signed in.
 
 ## Working together
 
+> **Recording a demo?** [`DEMO.md`](DEMO.md) has a three-agent notes-app script
+> with one prompt per agent, set up to show a conflict, duplicate work and a
+> cross-agent dependency being resolved.
+
 Give each agent its own part of the app in its own folder, for example:
 
 | Agent  | Folder    | Task                                                            |
