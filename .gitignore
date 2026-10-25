@@ -1,0 +1,9 @@
+# dibs writes these with absolute paths for one machine; never commit them.
+.mcp.json
+.claude/settings.local.json
+.codex/
+.factory/
+
+node_modules/
+.env
+.env.*
