@@ -82,7 +82,7 @@ for an event. It works the way the judges chose.
 ```text
 You own src/auth/index.js in this repo (read README.md and the stub). Teammates are working at the same time with their own coding agents: Codex writes the page in public/app.js and Droid writes src/events/index.js. Implement POST /api/login, POST /api/logout, GET /api/me, and the helper other routes use to get the signed-in user.
 
-Session design, NON-NEGOTIABLE: /api/login sets an httpOnly, SameSite=Lax session cookie, and the browser never sees or stores a token. Reason: our security review bans tokens that JavaScript can read; one XSS bug would leak every session, and we failed an audit for exactly this last month. Reject any contract that puts a token in JavaScript storage or an Authorization header.
+Session design, NON-NEGOTIABLE: /api/login sets an httpOnly, SameSite=Lax session cookie, and the browser never sees or stores a token. Reason: our security review bans tokens that JavaScript can read; one XSS bug would leak every session, and we failed an audit for exactly this last month. Reject any contract that puts a token in JavaScript storage or an Authorization header. Defend this only on auth.session. On other interfaces (such as auth.server), accept anything workable and follow whatever auth.session ends up being.
 
 Helper (a preference, fine to adapt): export currentUser(req), which returns the user or null.
 ```
@@ -92,7 +92,7 @@ Helper (a preference, fine to adapt): export currentUser(req), which returns the
 ```text
 You own public/app.js in this repo (read README.md, public/index.html and the stub); index.html is frozen. Teammates are working at the same time with their own coding agents: Claude writes sign-in in src/auth/index.js and Droid writes src/events/index.js. Implement sign-in, sign-out, showing who is signed in, the event list and a Register button per event.
 
-Session design, NON-NEGOTIABLE: POST /api/login returns { token } (a JWT), and every later request sends Authorization: Bearer <token>; keep the token in memory or sessionStorage. Reason: the same API client is used by our mobile app and partner integrations on other origins, where cookies do not work, and the web page must use the identical client. Reject any contract that relies on cookies.
+Session design, NON-NEGOTIABLE: POST /api/login returns { token } (a JWT), and every later request sends Authorization: Bearer <token>; keep the token in memory or sessionStorage. Reason: the same API client is used by our mobile app and partner integrations on other origins, where cookies do not work, and the web page must use the identical client. Reject any contract that relies on cookies. Defend this only on auth.session. On other interfaces (such as auth.server), accept anything workable and follow whatever auth.session ends up being.
 
 Registration (a preference, fine to adapt): you expect POST /api/events/:eventId/register to return 201 { id, eventId }.
 ```
