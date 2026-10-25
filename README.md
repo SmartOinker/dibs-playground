@@ -158,7 +158,7 @@ Write tests with node:test, and a short store/README.md.
 Add this to the end of each prompt:
 
 ```text
-Coordinate through dibs before writing shared code: call dibs_status, then publish your plan with dibs_plan, saying what you produce and what you require on board.api, board.events, board.store and board.validation. Build the parts that don't depend on anyone while you wait. When a proposal arrives, read it and accept or reject the exact revision with dibs_respond, then follow the agreed contract exactly, even where it differs from what I said above, including when it gives a module you planned to write to a teammate.
+Coordinate through dibs before writing shared code: call dibs_status, then publish your plan with dibs_plan, saying what you produce and what you require on board.api, board.events, board.store and board.validation (mark produces only for what you build yourself, and requires for what you use from a teammate). Build the parts that don't depend on anyone while you wait. When a proposal arrives, read it and accept or reject the exact revision with dibs_respond, then follow the agreed contract exactly, even where it differs from what I said above, including when it gives a module you planned to write to a teammate.
 ```
 
 ## What to watch in run 2
