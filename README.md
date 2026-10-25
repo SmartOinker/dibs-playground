@@ -21,7 +21,7 @@ src/events/index.js   Droid    the event list and registrations
 
 ## Setup (once per laptop)
 
-Node 22+, a signed-in `gh` with read access to `2elliot/dibs`, and the agent CLI.
+Node 22+, a signed-in `gh` with read access to `2elliot/dibs`, and the agent CLI. Reinstall dibs on the day: `dibs decide` needs the latest release.
 
 ```sh
 gh release download real-exp-latest --repo 2elliot/dibs --pattern '*.tgz' --clobber
@@ -45,18 +45,25 @@ Put the printed **Dashboard** link on the big screen. Others join:
 accept its dibs MCP and hook prompts, check `dibs doctor --provider <yours>`, then
 paste its prompt below. Paste all three within a few seconds.
 
-**T+0:00 on stage**, with the story view on screen:
+**T+0:00 on stage**, with the story view on screen. Timings are from the
+rehearsal, measured from pasting the prompts:
 
-1. The plans land. The AI finds the three problems.
-2. `auth.server` and `events.registration` get agreed.
-3. `auth.session`: one agent rejects, dibs revises, the other rejects. It turns
-   **FROZEN**, and the panel shows **Option A** and **Option B** with who rejected
-   each and why.
-4. Read the two options to the judges, or show them in a terminal:
-   `dibs decide auth.session --provider claude`. **The judges pick.**
+1. **~0:05–0:45** the three plans land.
+2. **~1:05** the AI finds the problems: `auth.session` (conflict), `events.registration`,
+   and `auth.server` (already compatible, teal).
+3. **~1:25** `events.registration` gets agreed. `auth.session`: Codex rejects the
+   cookie proposal ("cookies break the mobile/partner client").
+4. **~3:00** dibs revises it and Codex rejects again: **FROZEN**. The panel on the
+   right shows **A: Claude's design** (httpOnly cookie) and **B: Codex's design**
+   (JWT bearer), each in the agent's own words with why it won't budge, plus the
+   AI's rejected proposals as C and D. In a terminal:
+   `dibs decide auth.session --provider claude`. **The judges pick A or B.**
 5. Claude laptop: `dibs decide auth.session A --provider claude` (or `B`).
    The node turns green; every agent receives the decision and finishes the
-   app that way, including the agent whose position lost.
+   app that way, including the agent whose design lost (about 1–2 minutes).
+
+To make the on-stage part 3 minutes, start the agents about 2 minutes before you
+begin talking, so the freeze lands about one minute in.
 
 **Finale:** each laptop commits and pushes its branch; merge the three and run:
 
