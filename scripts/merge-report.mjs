@@ -78,7 +78,8 @@ try {
 
 const conflicted = branches.filter((b) => b.conflicts.length);
 const conflictFiles = new Set(conflicted.flatMap((b) => b.conflicts));
-const pad = (s, n) => String(s).padEnd(n);
+// Always leave at least two spaces, so a long cell can't run into the next column.
+const pad = (s, n) => String(s).padEnd(n - 2) + "  ";
 console.log(
   `\nMerge report: ${run}  (origin/main + 3 agent branches, merged in order)\n`,
 );
