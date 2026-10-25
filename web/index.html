@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team task board</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">TEAM WORKSPACE</p><h1>Task board</h1></div>
+    <p id="connection" role="status">Connecting…</p>
+  </header>
+  <main>
+    <form id="create-card" class="composer" aria-labelledby="create-heading">
+      <h2 id="create-heading">New task</h2>
+      <div class="fields">
+        <label>Title<input name="title" autocomplete="off" required aria-describedby="title-error"><span id="title-error" class="field-error"></span></label>
+        <label>Assignee<input name="assignee" autocomplete="off" aria-describedby="assignee-error"><span id="assignee-error" class="field-error"></span></label>
+        <label>Column<select name="column" aria-describedby="column-error"></select><span id="column-error" class="field-error"></span></label>
+        <label class="description">Description<textarea name="description" rows="2" aria-describedby="description-error"></textarea><span id="description-error" class="field-error"></span></label>
+        <label>Labels (comma separated)<input name="labelNames" autocomplete="off" aria-describedby="labels-error"><span id="labels-error" class="field-error"></span></label>
+        <label>Label color<select name="labelColor" aria-describedby="labels-error"></select></label>
+      </div>
+      <div class="form-footer"><p id="create-error" class="error" role="alert"></p><button type="submit" disabled>Add task</button></div>
+    </form>
+    <div class="board-heading"><h2>All tasks <span id="total"></span></h2><p>Drag to reorder, or use each task’s move controls.</p></div>
+    <label class="label-filter">Filter by label<select id="label-filter"><option value="">All labels</option></select></label>
+    <p id="board-error" class="error" role="alert"></p>
+    <div id="board" class="board" aria-label="Task board" aria-busy="true"></div>
+  </main>
+</body>
+</html>
