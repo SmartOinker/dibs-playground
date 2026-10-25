@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4f0">
+  <title>Team board</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Team board home"><span class="brand-mark" aria-hidden="true">▤</span> Workroom <span class="brand-divider">/</span> <span class="team-name">Team workspace</span></a>
+    <span class="workspace-label">SHARED WORKSPACE</span>
+  </header>
+  <main>
+    <section class="board-heading" aria-labelledby="board-title">
+      <div><p class="eyebrow">A LITTLE STRUCTURE. A LOT OF PROGRESS.</p><h1 id="board-title">Team board<span class="title-dot">.</span></h1><p class="subtitle">One place for what’s next, what’s moving, and what’s done.</p></div>
+      <button class="button primary" id="new-card" type="button"><span aria-hidden="true">＋</span> New card</button>
+    </section>
+    <div class="board-toolbar"><div class="board-tab"><span aria-hidden="true">▥</span> Board <span id="total-count" class="total-count">0</span></div><div class="connection" role="status"><span class="status-dot" id="status-dot"></span><span id="connection-text">Connecting…</span><button id="retry" class="text-button" type="button" hidden>Retry</button></div></div>
+    <div id="board-error" class="notice" role="alert" hidden></div>
+    <div id="board" class="board" aria-label="Task board" aria-busy="true"><p class="loading">Loading your board…</p></div>
+    <p class="board-hint"><span aria-hidden="true">↔</span> Drag cards to move or reorder. Use a card’s edit button for keyboard controls.</p>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  </main>
+  <dialog id="card-dialog" aria-labelledby="dialog-title">
+    <form id="card-form" novalidate>
+      <div class="dialog-heading"><div><p class="eyebrow">MAKE THE NEXT STEP CLEAR</p><h2 id="dialog-title">New card</h2></div><button type="button" class="icon-button" id="close-dialog" aria-label="Close card editor">×</button></div>
+      <p id="form-error" class="notice" role="alert" tabindex="-1" hidden></p>
+      <label for="title">Title <span class="required">*</span></label>
+      <input id="title" name="title" placeholder="What needs to happen?" required maxlength="80" aria-describedby="title-error title-hint">
+      <div class="field-meta"><span id="title-error" class="field-error"></span><span id="title-hint">Up to 80 characters</span></div>
+      <label for="description">Description <span class="optional">optional</span></label>
+      <textarea id="description" name="description" rows="4" placeholder="Add a little context…" aria-describedby="description-error"></textarea>
+      <p id="description-error" class="field-error"></p>
+      <label for="assignee">Assignee <span class="optional">optional</span></label>
+      <input id="assignee" name="assignee" placeholder="Who’s taking this on?" aria-describedby="assignee-error">
+      <p id="assignee-error" class="field-error"></p>
+      <div class="placement" id="placement"><div><label for="column">Column</label><select id="column" name="column" aria-describedby="column-error"></select><p id="column-error" class="field-error"></p></div><div id="position-field"><label for="position">Position</label><select id="position" name="position" aria-describedby="position-error"></select><p id="position-error" class="field-error"></p></div></div>
+      <div id="delete-confirmation" class="delete-confirmation" hidden><p>Delete this card? This cannot be undone.</p><button id="confirm-delete" type="button" class="button danger">Yes, delete card</button><button id="cancel-delete" type="button" class="text-button">Keep card</button></div>
+      <div class="dialog-actions"><button id="delete-card" type="button" class="text-button delete-button" hidden>Delete card</button><div class="save-actions"><button id="cancel-dialog" type="button" class="button secondary">Cancel</button><button id="save-card" type="submit" class="button primary">Create card</button></div></div>
+    </form>
+  </dialog>
+</body>
+</html>
